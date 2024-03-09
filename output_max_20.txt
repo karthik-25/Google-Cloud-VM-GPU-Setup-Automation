@@ -1,0 +1,180 @@
+ks6964@cloudshell:~$ /usr/bin/python /home/ks6964/hw2/gcp_gpu_search.py
+Checking GPU availability in us-east1-b...
+
+GPU nvidia-tesla-p4 not available in us-east1-b.
+
+Checking GPU availability in us-east1-c...
+
+GPU nvidia-tesla-p4 not available in us-east1-c.
+
+Checking GPU availability in us-east1-d...
+
+GPU nvidia-tesla-p4 not available in us-east1-d.
+
+Checking GPU availability in us-east4-c...
+
+GPU nvidia-tesla-p4 is available in us-east4-c. Trying to create VM...
+
+Waiting for the operation to finish...
+
+Failed to create VM in us-east4-c due to: None ZONE_RESOURCE_POOL_EXHAUSTED
+
+Checking GPU availability in us-east4-b...
+
+GPU nvidia-tesla-p4 is available in us-east4-b. Trying to create VM...
+
+Waiting for the operation to finish...
+
+Failed to create VM in us-east4-b due to: None ZONE_RESOURCE_POOL_EXHAUSTED
+
+Checking GPU availability in us-east4-a...
+
+GPU nvidia-tesla-p4 is available in us-east4-a. Trying to create VM...
+
+Waiting for the operation to finish...
+
+Failed to create VM in us-east4-a due to: None ZONE_RESOURCE_POOL_EXHAUSTED
+
+Checking GPU availability in us-central1-c...
+
+GPU nvidia-tesla-p4 is available in us-central1-c. Trying to create VM...
+
+Waiting for the operation to finish...
+
+Failed to create VM in us-central1-c due to: None QUOTA_EXCEEDED
+
+Checking GPU availability in us-central1-a...
+
+GPU nvidia-tesla-p4 is available in us-central1-a. Trying to create VM...
+
+Waiting for the operation to finish...
+
+Failed to create VM in us-central1-a due to: None ZONE_RESOURCE_POOL_EXHAUSTED
+
+Checking GPU availability in us-central1-f...
+
+GPU nvidia-tesla-p4 not available in us-central1-f.
+
+Checking GPU availability in us-central1-b...
+
+GPU nvidia-tesla-p4 not available in us-central1-b.
+
+Checking GPU availability in us-west1-b...
+
+GPU nvidia-tesla-p4 not available in us-west1-b.
+
+Checking GPU availability in us-west1-c...
+
+GPU nvidia-tesla-p4 not available in us-west1-c.
+
+Checking GPU availability in us-west1-a...
+
+GPU nvidia-tesla-p4 not available in us-west1-a.
+
+Checking GPU availability in europe-west4-a...
+
+GPU nvidia-tesla-p4 not available in europe-west4-a.
+
+Checking GPU availability in europe-west4-b...
+
+GPU nvidia-tesla-p4 is available in europe-west4-b. Trying to create VM...
+
+Waiting for the operation to finish...
+
+Successfully created VM
+
+VM -> 'ks6964-vm-test' created successfully in zone -> 'europe-west4-b' under project -> 'core-verbena-328218'
+
+ks6964@cloudshell:~$ gcloud compute ssh ks6964-vm-test --zone europe-west4-b --project core-verbena-328218
+Warning: Permanently added 'compute.5855777106206001437' (ECDSA) to the list of known hosts.
+======================================
+Welcome to the Google Deep Learning VM
+======================================
+
+Version: tf-gpu.1-15.m100
+Based on: Debian GNU/Linux 10 (buster) (GNU/Linux 4.19.0-22-cloud-amd64 x86_64\n)
+
+Resources:
+ * Google Deep Learning Platform StackOverflow: https://stackoverflow.com/questions/tagged/google-dl-platform
+ * Google Cloud Documentation: https://cloud.google.com/deep-learning-vm
+ * Google Group: https://groups.google.com/forum/#!forum/google-dl-platform
+
+To reinstall Nvidia driver (if needed) run:
+sudo /opt/deeplearning/install-driver.sh
+TensorFlow comes pre-installed with this image. To install TensorFlow binaries in a virtualenv (or conda env),
+please use the binaries that are pre-built for this image. You can find the binaries at
+/opt/deeplearning/binaries/tensorflow/
+If you need to install a different version of Tensorflow manually, use the common Deep Learning image with the
+right version of CUDA
+
+Linux ks6964-vm-test 4.19.0-22-cloud-amd64 #1 SMP Debian 4.19.260-1 (2022-09-29) x86_64
+
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+
+This VM requires Nvidia drivers to function correctly.   Installation takes ~1 minute.
+Would you like to install the Nvidia driver? [y/n] y
+Installing Nvidia driver.
+wait apt locks released
+install linux headers: linux-headers-4.19.0-22-cloud-amd64
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+linux-headers-4.19.0-22-cloud-amd64 is already the newest version (4.19.260-1).
+0 upgraded, 0 newly installed, 0 to remove and 142 not upgraded.
+DRIVER_VERSION: 510.47.03
+Downloading driver from GCS location and install: gs://nvidia-drivers-us-public/tesla/510.47.03/NVIDIA-Linux-x86_64-510.47.03.run
+Verifying archive integrity... OK
+Uncompressing NVIDIA Accelerated Graphics Driver for Linux-x86_64 510.47.03..........................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+
+WARNING: The nvidia-drm module will not be installed. As a result, DRM-KMS will not function with this installation of the NVIDIA driver.
+
+
+WARNING: nvidia-installer was forced to guess the X library path '/usr/lib64' and X module path '/usr/lib64/xorg/modules'; these paths were not queryable from the system.  If X fails to find the
+         NVIDIA X driver module, please install the `pkg-config` utility and the X.Org SDK/development package for your distribution and reinstall the driver.
+
+Nvidia driver installed.
+ks6964@ks6964-vm-test:~$ nvidia-smi
+Sat Mar  9 01:22:48 2024       
++-----------------------------------------------------------------------------+
+| NVIDIA-SMI 510.47.03    Driver Version: 510.47.03    CUDA Version: 11.6     |
+|-------------------------------+----------------------+----------------------+
+| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+|                               |                      |               MIG M. |
+|===============================+======================+======================|
+|   0  Tesla P4            Off  | 00000000:00:04.0 Off |                    0 |
+| N/A   41C    P0    22W /  75W |      0MiB /  7680MiB |      0%      Default |
+|                               |                      |                  N/A |
++-------------------------------+----------------------+----------------------+
+                                                                               
++-----------------------------------------------------------------------------+
+| Processes:                                                                  |
+|  GPU   GI   CI        PID   Type   Process name                  GPU Memory |
+|        ID   ID                                                   Usage      |
+|=============================================================================|
+|  No running processes found                                                 |
++-----------------------------------------------------------------------------+
+ks6964@ks6964-vm-test:~$ 
+ks6964@ks6964-vm-test:~$ lspci | grep -i nvidia
+00:04.0 3D controller: NVIDIA Corporation GP104GL [Tesla P4] (rev a1)
+ks6964@ks6964-vm-test:~$ 
+ks6964@ks6964-vm-test:~$ 
+ks6964@ks6964-vm-test:~$ exit
+logout
+Connection to 35.214.222.26 closed.
+ks6964@cloudshell:~$ 
+ks6964@cloudshell:~$ 
+ks6964@cloudshell:~$ gcloud compute instances delete ks6964-vm-test --zone europe-west4-b --project core-verbena-328218
+The following instances will be deleted. Any attached disks configured to be auto-deleted will be deleted unless they are attached to any other instances or the `--keep-disks` flag is given and 
+specifies them for keeping. Deleting a disk is irreversible and any data on the disk will be lost.
+ - [ks6964-vm-test] in [europe-west4-b]
+
+Do you want to continue (Y/n)?  Y
+
+Deleted [https://www.googleapis.com/compute/v1/projects/core-verbena-328218/zones/europe-west4-b/instances/ks6964-vm-test].
+ks6964@cloudshell:~$ 

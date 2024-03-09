@@ -1,4 +1,5 @@
-# Google Cloud GPU Chase - Searching for available zone for VM creation with specified GPU
+# Google Compute Engine (Google Cloud) - GPU Search
+## Search for available zone and create VM instance with specified GPU
 
 This project automates the process of finding an available zone within Google Cloud Compute Engine (GCE) that supports a specified GPU type and then creates a Virtual Machine (VM) in that zone with the desired configurations. The goal is to streamline the setup of a VM for running AI models that require GPU acceleration.
 
